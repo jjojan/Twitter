@@ -49,7 +49,7 @@ public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 		 startActivity(i);
 	}
 
-	// OAuth authentication flow failed, handle the error now
+	// OAuth authentication flow failed, handle the error
 	@Override
 	public void onLoginFailure(Exception e) {
 		e.printStackTrace();
