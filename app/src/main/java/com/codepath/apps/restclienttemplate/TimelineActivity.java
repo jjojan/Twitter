@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,7 +31,7 @@ import java.util.List;
 import okhttp3.Headers;
 
 public class TimelineActivity extends AppCompatActivity {
-
+    private SwipeRefreshLayout swipeContainer;
 
     public static final String TAG = "TIMEACT";
     RecyclerView rvTweets;
@@ -46,6 +47,7 @@ public class TimelineActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
         Button logoutButton = findViewById(R.id.logoutButton);
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
 
         client = TwitterApplication.getRestClient(this);
         rvTweets = findViewById(R.id.rvTweets);
@@ -58,7 +60,16 @@ public class TimelineActivity extends AppCompatActivity {
 
         populateHomeTimeline();
 
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+//                fetchTimelineAsync(0);
+                  adapter.clear();
+                  populateHomeTimeline();
+                  swipeContainer.setRefreshing(false);
 
+            }
+        });
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,8 +119,7 @@ public class TimelineActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     Log.e(TAG, "JSON", e);
                 }
-
-                Log.i(TAG, "sucess");
+                Log.i(TAG, "Success");
             }
 
             @Override
@@ -122,7 +132,7 @@ public class TimelineActivity extends AppCompatActivity {
     void onLogoutButton() {
         // forget who's logged in
         TwitterApplication.getRestClient(this).clearAccessToken();
-
+        finish();
         // navigate backwards to Login screen
         Intent i = new Intent(this, LoginActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // this makes sure the Back button won't work
