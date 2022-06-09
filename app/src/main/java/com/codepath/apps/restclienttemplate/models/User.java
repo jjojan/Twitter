@@ -9,6 +9,7 @@ public class User {
     public String name;
     public String screenName;
     public String publicImageUrl;
+    public String displayUrl;
 
     //empty constructor for the Parcel library
     public User(){
