@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.apps.restclienttemplate.models.Util;
 
 import java.util.List;
 
@@ -54,6 +55,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvBody;
         TextView tvScreenName;
         ImageView contentImage;
+        TextView tvtimeStamp;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,6 +63,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             contentImage = itemView.findViewById(R.id.contentImage);
+            tvtimeStamp =  itemView.findViewById(R.id.tvtimeStamp);
 
         }
 
@@ -75,6 +78,9 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 contentImage.setVisibility(View.VISIBLE);
                 Glide.with(context).load(tweet.tweet_url).override(500, 500).centerCrop().transform(new RoundedCorners(30)).into(contentImage);
             }
+            String timeStamp = Util.getRelativeTimeAgo(tweet.createdAt);
+            tvtimeStamp.setText(timeStamp);
+
         }
     }
     public void clear() {
