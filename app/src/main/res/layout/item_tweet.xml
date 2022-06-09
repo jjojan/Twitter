@@ -34,7 +34,9 @@
         android:layout_toEndOf="@+id/ivProfileImage"
         android:singleLine="false"
         android:text="TextView"
-        tools:text="This is a cool tweet!" />
+        tools:text="This is a cool tweet!"
+        android:autoLink="all"
+        android:linksClickable="true"/>
 
     <ImageView
         android:id="@+id/contentImage"
