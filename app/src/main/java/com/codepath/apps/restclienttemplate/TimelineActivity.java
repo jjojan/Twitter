@@ -40,6 +40,7 @@ public class TimelineActivity extends AppCompatActivity {
     TweetsAdapter adapter;
     ActivityResultLauncher<Intent> messActLauncher;
     private final int REQUEST_CODE = 20;
+    MenuItem miActionProgressItem;
 
 
     @Override
@@ -57,6 +58,7 @@ public class TimelineActivity extends AppCompatActivity {
 
         rvTweets.setLayoutManager(new LinearLayoutManager(this));
         rvTweets.setAdapter(adapter);
+
 
         populateHomeTimeline();
 
@@ -77,6 +79,7 @@ public class TimelineActivity extends AppCompatActivity {
                 onLogoutButton();
             }
         });
+
     }
 
     @Override
@@ -107,10 +110,31 @@ public class TimelineActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        miActionProgressItem = menu.findItem(R.id.miActionProgress);
+
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    public void showProgressBar() {
+
+        miActionProgressItem.setVisible(true);
+    }
+
+    public void hideProgressBar() {
+
+        miActionProgressItem.setVisible(false);
+    }
+
     private void populateHomeTimeline() {
         client.getHomeTimeline(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
+                if(miActionProgressItem != null){
+                    miActionProgressItem.setVisible(false);
+                }
                 JSONArray jsonArray = json.jsonArray;
 
                 try {
@@ -120,6 +144,8 @@ public class TimelineActivity extends AppCompatActivity {
                     Log.e(TAG, "JSON", e);
                 }
                 Log.i(TAG, "Success");
+
+
             }
 
             @Override
@@ -139,9 +165,6 @@ public class TimelineActivity extends AppCompatActivity {
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // same as above
 
     }
-
-
-
 
 
 
