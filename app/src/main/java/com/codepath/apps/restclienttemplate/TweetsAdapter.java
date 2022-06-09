@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import java.util.List;
@@ -72,7 +73,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 contentImage.setVisibility(View.GONE);
             } else {
                 contentImage.setVisibility(View.VISIBLE);
-                Glide.with(context).load(tweet.tweet_url).override(500, 500).centerCrop().into(contentImage);
+                Glide.with(context).load(tweet.tweet_url).override(500, 500).centerCrop().transform(new RoundedCorners(30)).into(contentImage);
             }
         }
     }
