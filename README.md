@@ -49,7 +49,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='[https://imgur.com/uM2PYct](https://i.imgur.com/uM2PYct.gifv)' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://imgur.com/uM2PYct' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [Kap](https://getkap.co/).
 
