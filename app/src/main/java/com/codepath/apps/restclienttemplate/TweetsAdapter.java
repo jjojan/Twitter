@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.codepath.apps.restclienttemplate.databinding.ItemTweetBinding;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.apps.restclienttemplate.models.Util;
 
@@ -23,6 +24,7 @@ import java.util.List;
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder> {
 
     public static final String TAG = "Tweets_Adapter";
+    private ItemTweetBinding binding;
 
     Context context;
     List<Tweet> tweets;
@@ -57,6 +59,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvScreenName;
         ImageView contentImage;
         TextView tvtimeStamp;
+        ItemTweetBinding binding;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

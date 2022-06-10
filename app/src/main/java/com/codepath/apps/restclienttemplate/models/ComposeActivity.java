@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.TwitterApplication;
 import com.codepath.apps.restclienttemplate.TwitterClient;
+import com.codepath.apps.restclienttemplate.databinding.ActivityComposeBinding;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 
 import org.json.JSONException;
@@ -32,18 +33,23 @@ public class ComposeActivity extends AppCompatActivity {
     public static final int MAX_CHAR_COUNT  = 280;
     TwitterClient client;
     TextView tvcharCount;
+    private ActivityComposeBinding binding;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        binding = ActivityComposeBinding.inflate(getLayoutInflater());
+
+        View view = binding.getRoot();
+        setContentView(view);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compose);
 
         client = TwitterApplication.getRestClient(this );
 
-        etCompose = findViewById(R.id.etCompose);
-        btnTweet =  findViewById(R.id.btnTweet);
+        etCompose = binding.etCompose;
+        btnTweet = binding.btnTweet;
 
         btnTweet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +87,7 @@ public class ComposeActivity extends AppCompatActivity {
             }
         });
 
-        tvcharCount = findViewById(R.id.tvcharCount);
+        tvcharCount = binding.tvcharCount;
 
         etCompose.addTextChangedListener(new TextWatcher() {
             @Override
