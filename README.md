@@ -55,7 +55,7 @@ GIF created with [Kap](https://getkap.co/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+My biggest challenges were doing all the stretch and goals and implenting the infinite scrolling and refresh.
 
 ## Open-source libraries used
 
