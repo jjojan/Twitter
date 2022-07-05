@@ -45,6 +45,7 @@ public class TimelineActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //new
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
         Button logoutButton = findViewById(R.id.logoutButton);

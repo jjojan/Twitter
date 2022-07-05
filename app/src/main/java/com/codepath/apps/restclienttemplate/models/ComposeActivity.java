@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.TwitterApplication;
 import com.codepath.apps.restclienttemplate.TwitterClient;
+import com.codepath.apps.restclienttemplate.databinding.ActivityComposeBinding;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 
 import org.json.JSONException;
@@ -32,6 +33,7 @@ public class ComposeActivity extends AppCompatActivity {
     public static final int MAX_CHAR_COUNT  = 280;
     TwitterClient client;
     TextView tvcharCount;
+    private ActivityComposeBinding binding;
 
 
     @Override
@@ -43,7 +45,7 @@ public class ComposeActivity extends AppCompatActivity {
         client = TwitterApplication.getRestClient(this );
 
         etCompose = findViewById(R.id.etCompose);
-        btnTweet =  findViewById(R.id.btnTweet);
+        btnTweet = findViewById(R.id.btnTweet);
 
         btnTweet.setOnClickListener(new View.OnClickListener() {
             @Override
